@@ -1,0 +1,16 @@
+load("@rules_apple//apple:ios.bzl", "ios_application")
+load("@rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "lib",
+    srcs = glob(["ModularBazel/*.swift"]),
+)
+
+ios_application(
+    name = "ModularBazel",
+    bundle_id = "com.ziddan.modular-bazel",
+    families = ["iphone"],
+    infoplists = ["ModularBazel/Info.plist"],
+    minimum_os_version = "15.0",
+    deps = [":lib"],
+)
